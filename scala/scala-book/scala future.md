@@ -244,7 +244,21 @@ result.onComplete {
 
 `onComplete` is a method that’s available on a `Future`, and you use it to process the future’s result as a side effect. In the same way that the `foreach` method on collections classes returns `Unit` and is only used for side effects, `onComplete` returns `Unit` and you only use it for side effects like printing the results, updating a GUI, updating a database, etc.
 
+You can read that code as, “Whenever `result` has a final value — i.e., after all of the futures return in the for-expression — come here. If everything returned successfully, run the `println` statement shown in the `Success` case. Otherwise, if an exception was thrown, go to the `Failure` case and print the exception’s stack trace.”
 
+As that code implies, it’s completely possible that a `Future` may fail. For example, imagine that you call a web service, but the web service is down. That `Future` instance will contain an exception, so when you call `result.onComplete` like this, control will flow to the `Failure` case.
+
+It’s important to note that just as the JVM’s main thread didn’t stop at the for-expression, it doesn’t block here, either. The code inside `onComplete` doesn’t execute until after the for-expression assigns a value to `result`.
+
+### About that `sleep` call
+
+A final point to note about small examples like this is that you need to have a `sleep` call at the end of your `App`:
+
+```
+sleep(5000)
+```
+
+That call keeps the main thread of the JVM alive for five seconds. If you don’t include a call like this, the JVM’s main thread will exit before you get a result from the three futures, which are running on other threads. This isn’t usually a problem in the real world, but it’s needed for little demos like this.
 
 reference：https://docs.scala-lang.org/overviews/scala-book/futures.html
 
