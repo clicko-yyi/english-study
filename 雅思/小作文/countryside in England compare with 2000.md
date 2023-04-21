@@ -1,6 +1,6 @@
 ### Question
 
-![qualification of the workforce at an engineering company](.\pics\countryside in England compare with 2000.png)
+![qualification of the workforce at an engineering company](./pics/countryside in England compare with 2000.png)
 
 ### Solution
 
