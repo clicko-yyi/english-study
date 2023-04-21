@@ -2,7 +2,7 @@
 
 ***The chart below shows the qualification of the workforce at an engineering company in 1988 and 2008.***
 
-![qualification of the workforce at an engineering company](.\pics\number of people employed in five types of work in one region of Australia.png)
+![qualification of the workforce at an engineering company](./pics/number of people employed in five types of work in one region of Australia.png)
 
 ### Solution
 
